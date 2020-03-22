@@ -148,7 +148,9 @@ public class AbstractDAO<T> {
                     Object value = resultSet.getObject(field.getName());
                     PropertyDescriptor propertyDescriptor = new PropertyDescriptor(field.getName(), type);
                     Method method = propertyDescriptor.getWriteMethod();
-                        method.invoke(instance, value);
+                    System.out.println(instance);
+                    System.out.println(value);
+                    method.invoke(instance, value);
                 }
                 list.add(instance);
             }

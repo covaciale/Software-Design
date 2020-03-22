@@ -51,7 +51,7 @@ public class DemoApplicationTests {
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 
-		String query = "SELECT * FROM ps1.user where idUser =1;";
+		String query = "SELECT * FROM ps1.user where idUser = 1;";
 		try {
 			connection = ConnectionFactory.getConnection();
 			statement = connection.prepareStatement(query);
