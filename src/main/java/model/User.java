@@ -8,19 +8,27 @@ public class User {
     public String  secondName;
     public int age;
     public String gender;
+    public String dance;
 
 
-
-    public User(int idUser, String firstName, String secondName, int age, String gender) {
+    public User(int idUser, String firstName, String secondName, int age, String gender, String dance) {
         this.idUser=idUser;
         this.firstName=firstName;
         this.secondName=secondName;
         this.age=age;
         this.gender=gender;
-
+        this.dance = dance;
     }
 
     public User() {
+    }
+
+    public String getDance() {
+        return dance;
+    }
+
+    public void setDance(String dance) {
+        this.dance = dance;
     }
 
     public String toString()
