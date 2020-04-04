@@ -44,7 +44,7 @@ public class DemoApplicationTests {
 
 	@Test
 	public void testFindById() {
-		User currentUser = new User(1,"Alexandra", "Covaci", 21, "F");
+		User currentUser = new User(1,"Alexandra", "Covaci", 21, "F", "dance_1");
 		User instance = new User();
 		int id = 1;
 		Connection connection = null;
@@ -86,7 +86,7 @@ public class DemoApplicationTests {
 	@Test
 	public void testFindByGender() {
 
-		User currentUser = new User(3,"Liviu", "Mich", 30, "M");
+		User currentUser = new User(3,"Liviu", "Mich", 30, "M", "dance_2");
 		User instance = new User();
 		int id = 1;
 		Connection connection = null;
