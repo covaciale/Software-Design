@@ -1,8 +1,6 @@
 package com.example.sd2020.demo;
 
-import model.AbstractDAO;
-import model.User;
-import model.UserDAO;
+import model.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +12,8 @@ import java.util.List;
 public class SampleController {
 
     private UserDAO userDAO = new UserDAO();
-
+    private DancesDAO dancesDAO = new DancesDAO();
+    private AntrenoriDAO antrenoriDAO = new AntrenoriDAO();
 
     public SampleController() {
     }
@@ -24,9 +23,21 @@ public class SampleController {
         return "Hello SD 2020";
     }
 
-    @GetMapping("/allList") // localhost:8080/allList
-    public List<User> findAll() {
+    @GetMapping("/allListUser") // localhost:8080/allListUser
+    public List<User> findAllUser() {
         List<User> list = userDAO.findAll();
+        return list;
+    }
+
+    @GetMapping("/allListDances") // localhost:8080/allListDances
+    public List<User> findAllDances() {
+        List<User> list = dancesDAO.findAll();
+        return list;
+    }
+
+    @GetMapping("/allListAntrenori") // localhost:8080/allListAntrenori
+    public List<User> findAllAntrenori() {
+        List<User> list = antrenoriDAO.findAll();
         return list;
     }
 

@@ -40,6 +40,29 @@ AbstractDAO este clasa pentru implementarea metodelor folosite la operațiile cu
   -T add(T user)
   -List<T> createObjects
   
+  
+# Tehnici folosite
+Design Pattern-ul Observer definește o relație de dependență 1 la n între obiecte astfel încât când un obiect își schimbă starea, toți dependenții lui sunt notificați și actualizați automat. Folosirea acestui pattern implică existența unui obiect cu rolul de subiect, care are asociată o listă de obiecte dependente, cu rolul de observatori, pe care le apelează automat de fiecare dată când se întâmplă o acțiune.
+Practic în toate aceste situații clasele Observer observă modificările/acțiunile clasei Subject. Observarea se implementează prin notificări inițiate din metodele clasei Subject.
+
+In cazul proiectului prezentat, design-ul Observer a fost implementat in urmatoarea situatie: daca unul dintre antrenori modifica data/ora cursului se transmite un mesaj, dat tot de catre antrenor, pentru toate persoanele inscrise la cursul respectiv.
+
+
+    @Override
+    public void update(Observable o, Object arg) {
+        Pair<Date, Date> dates = (Pair<Date, Date>)arg; //the old date and the new date
+        this.coursesDates.remove(dates.getKey());
+        this.coursesDates.add(dates.getValue());
+    }
+    
+        public void setDate(Date date) {
+        Pair<Date, Date> dates = new Pair<>(this.date, date);
+        setChanged();
+        notifyObservers(dates);
+        this.date = date;
+    }
+    
+  
 # Metode de testare și verificare
 Pentru testare am facut 2 unit teste, unul pentru findById și unul pentru findByGender pentru datele din baza de date actuală. Pentru modificări ale bazei de date se poate modifica codul, în loc de userul creat prin constructor, se poate folosi ”when(apel functie).thenReturn(lista/user așteptat)” după care se parcurg aproximativ pașii din metoda pe care o verificăm, creăm baza de date, convertim obiectul/obiectele obținute, pe urmă le verificăm.
  
