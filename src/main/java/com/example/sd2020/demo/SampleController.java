@@ -30,8 +30,8 @@ public class SampleController {
     }
 
     @GetMapping("/allListDances") // localhost:8080/allListDances
-    public List<User> findAllDances() {
-        List<User> list = dancesDAO.findAll();
+    public List<Dances> findAllDances() {
+        List<Dances> list = dancesDAO.findAll();
         return list;
     }
 
@@ -61,6 +61,9 @@ public class SampleController {
 
     @PostMapping("/insertItem") // localhost:8080/insertItem
     public void insertItem(User item) {
-        userDAO.add(item);
+        User user = (new UserFactory()).createUser(item.idUser, item.firstName, item.secondName, item.age, item.gender, item.dance);
+        if (user != null) {
+            userDAO.add(user);
+        }
     }
 }

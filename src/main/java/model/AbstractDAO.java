@@ -24,7 +24,7 @@ public class AbstractDAO<T> {
         this.type = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
-    private String createSelectQuery(String field){
+    String createSelectQuery(String field){
         return "SELECT " +
                 " * " +
                 " FROM " +
@@ -139,7 +139,7 @@ public class AbstractDAO<T> {
         return user;
     }
 
-    private List<T> createObjects(ResultSet resultSet){
+    List<T> createObjects(ResultSet resultSet){
         List<T> list = new ArrayList<>();
         try{
             while (resultSet.next()){
