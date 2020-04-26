@@ -5,6 +5,8 @@
 # Versiunea actuală
 Momentan, în aplicație se pot adăuga useri, care reprezintă toate persoanele înscrise la cursurile de dans. Pe lăngă nume, prenume și vârstă, este important și sexul pentru diferitele workshopuri de styling. Ca și administrator, se vor putea extrage liste cu toți participanții, doar fetele, respectiv baieții, sau dupa un indice unic.
 
+![UML](E:\Facultate\Proiectare Software\demo\UML.png)
+
 Până la realizarea interfeței GUI se folosește Postman unde sunt apelate funcțiile pentru vizualizarea tuturor din baza de date, vizualizarea unui user după id și adăugarea unui user.Primele două sunt de tipul GET, iar ultima POST.
 
     @GetMapping("/allList") // localhost:8080/allList
@@ -62,6 +64,23 @@ In cazul proiectului prezentat, design-ul Observer a fost implementat in urmatoa
         this.date = date;
     }
     
+Patternurile de tip Factory sunt folosite pentru obiecte care generează instanțe de clase înrudite (implementează aceeași interfață, moștenesc aceeași clasă abstractă). Acestea sunt utilizate atunci când dorim să izolăm obiectul care are nevoie de o instanță de un anumit tip, de creearea efectivă acesteia. În plus clasa care va folosi instanța nici nu are nevoie să specifice exact subclasa obiectului ce urmează a fi creat, deci nu trebuie să cunoască toate implementările acelui tip, ci doar ce caracteristici trebuie să aibă obiectul creat. Din acest motiv, Factory face parte din categoria Creational Patterns, deoarece oferă o soluție legată de creearea obiectelor.
+
+    public class UserFactory {
+    private DancesDAO dancesDAO = new DancesDAO();
+
+    public User createUser(int idUser, String firstName, String secondName, int age, String gender, String dance){
+        if (idUser > 0 && firstName != null && secondName != null && age > 14 &&
+                (gender.equals("F") || gender.equals("M"))){
+            if (dancesDAO.findByName(dance).size() != 0){
+                return new User(idUser, firstName, secondName, age, gender, dance);
+            }
+            return null;
+        }
+        return null;
+    }
+}
+
   
 # Metode de testare și verificare
 Pentru testare am facut 2 unit teste, unul pentru findById și unul pentru findByGender pentru datele din baza de date actuală. Pentru modificări ale bazei de date se poate modifica codul, în loc de userul creat prin constructor, se poate folosi ”when(apel functie).thenReturn(lista/user așteptat)” după care se parcurg aproximativ pașii din metoda pe care o verificăm, creăm baza de date, convertim obiectul/obiectele obținute, pe urmă le verificăm.
