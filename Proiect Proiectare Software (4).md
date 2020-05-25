@@ -5,7 +5,7 @@
 # Versiunea actuală
 Momentan, în aplicație se pot adăuga useri, care reprezintă toate persoanele înscrise la cursurile de dans. Pe lăngă nume, prenume și vârstă, este important și sexul pentru diferitele workshopuri de styling. Ca și administrator, se vor putea extrage liste cu toți participanții, doar fetele, respectiv baieții, sau dupa un indice unic.
 
-![UML](..\UML.png)
+![UML](UML.png)
 
 Până la realizarea interfeței GUI se folosește Postman unde sunt apelate funcțiile pentru vizualizarea tuturor din baza de date, vizualizarea unui user după id și adăugarea unui user.Primele două sunt de tipul GET, iar ultima POST.
 
