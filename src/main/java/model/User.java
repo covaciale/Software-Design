@@ -1,6 +1,6 @@
 package model;
 
-import javafx.util.Pair;
+//import javafx.util.Pair;
 
 import java.util.*;
 
@@ -12,16 +12,16 @@ public class User implements Observer {
     public int age;
     public String gender;
     public String dance;
-    public List<Date> coursesDates;
+    //public List<Date> coursesDates;
 
     public User(int idUser, String firstName, String secondName, int age, String gender, String dance) {
-        this.idUser=idUser;
+        this.idUser = idUser;
         this.firstName=firstName;
         this.secondName=secondName;
         this.age=age;
         this.gender=gender;
         this.dance = dance;
-        this.coursesDates = new ArrayList<>();
+        //this.coursesDates = new ArrayList<>();
     }
 
     public User() {
@@ -80,15 +80,15 @@ public class User implements Observer {
         this.gender = gender;
     }
 
-    public void addCourseDate(Date date){
-        this.coursesDates.add(date);
-    }
+    //public void addCourseDate(Date date){
+        //this.coursesDates.add(date);
+    //}
 
     @Override
     public void update(Observable o, Object arg) {
-        Pair<Date, Date> dates = (Pair<Date, Date>)arg; //the old date and the new date
-        this.coursesDates.remove(dates.getKey());
-        this.coursesDates.add(dates.getValue());
+        //Pair<Date, Date> dates = (Pair<Date, Date>)arg; //the old date and the new date
+        //this.coursesDates.remove(dates.getKey());
+        //this.coursesDates.add(dates.getValue());
     }
 
 }

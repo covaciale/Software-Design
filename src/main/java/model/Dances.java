@@ -26,4 +26,8 @@ public class Dances {
     public void setDance(String dance) {
         this.dance = dance;
     }
+
+    public String toString(){
+        return idDances + " " + dance;
+    }
 }

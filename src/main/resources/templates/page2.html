@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Meniu</title>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <link href="../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
+</head>
+
+<body>
+<div class="container">
+
+    <a th:href="${'/allListUser'}">Users</a>
+    <a th:href="${'/allListDances'}">Dances</a>
+    <a th:href="${'/allListAntrenori'}">Artists</a>
+
+    <a th:href="${'/male'}">Men</a>
+    <a th:href="${'/female'}">Women</a>
+    <a th:href="${'/first'}">First</a>
+
+    <a th:href="${'/add'}">Add</a>
+
+</div>
+</body>
+</html>

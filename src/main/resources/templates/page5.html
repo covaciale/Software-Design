@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Meniu</title>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <link href="../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <h3>Inscriere</h3>
+
+            <form action = "/insert" method="post">
+                <label for="fname">First name</label>
+                <input type="text" id="fname" name="firstname" placeholder="First name">
+
+                <label for="lname">Second name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Second name">
+
+                <label for="varsta">Age</label>
+                <input type="text" id="varsta" name="varsta" placeholder="Age">
+
+                <label for="sex">Gender</label>
+                <select id="sex" name="sex">
+                    <option value="F">Female</option>
+                    <option value="M">Male</option>
+
+                </select>
+
+                <label for="dans">Dance</label>
+                <select id="dans" name="dans">
+                    <option value="bachata">Bachata</option>
+                    <option value="salsa">Salsa</option>
+                    <option value="kizomba">Kizomba</option>
+                    <option value="zouk">Zouk</option>
+
+                </select>
+
+                <input type = "submit" value ="Submit">
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

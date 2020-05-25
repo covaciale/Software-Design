@@ -48,4 +48,8 @@ public class Antrenori {
     public String getDance() {
         return dance;
     }
+
+    public String toString(){
+        return idAntrenori + " " + firstName + " " + secondName + " " + dance;
+    }
 }

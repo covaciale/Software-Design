@@ -17,12 +17,12 @@ public class DemoApplication {
 		Antrenori a = new Antrenori(1, "Nume", "Prenume", "Dans");
 		DanceCourse dc = new DanceCourse(1, a, "Curs de salsa", new Date());
 		User u =  new User(1, "Ana", "Maria", 12, "M", "Salsa");
-		u.addCourseDate(new Date());
-		System.out.println(u.coursesDates);
-		dc.addObserver(u);
+		//u.addCourseDate(new Date());
+		//System.out.println(u.coursesDates);
+		//dc.addObserver(u);
 
-		dc.setDate(new Date(2020));
-		System.out.println(u.coursesDates);
+		//dc.setDate(new Date(2020));
+		//System.out.println(u.coursesDates);
 
 		SpringApplication.run(DemoApplication.class, args);
 	}

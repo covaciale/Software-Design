@@ -5,7 +5,7 @@
 # Versiunea actuală
 Momentan, în aplicație se pot adăuga useri, care reprezintă toate persoanele înscrise la cursurile de dans. Pe lăngă nume, prenume și vârstă, este important și sexul pentru diferitele workshopuri de styling. Ca și administrator, se vor putea extrage liste cu toți participanții, doar fetele, respectiv baieții, sau dupa un indice unic.
 
-![UML](E:\Facultate\Proiectare Software\demo\UML.png)
+![UML](..\UML.png)
 
 Până la realizarea interfeței GUI se folosește Postman unde sunt apelate funcțiile pentru vizualizarea tuturor din baza de date, vizualizarea unui user după id și adăugarea unui user.Primele două sunt de tipul GET, iar ultima POST.
 
@@ -83,7 +83,11 @@ Patternurile de tip Factory sunt folosite pentru obiecte care generează instan�
 
   
 # Metode de testare și verificare
-Pentru testare am facut 2 unit teste, unul pentru findById și unul pentru findByGender pentru datele din baza de date actuală. Pentru modificări ale bazei de date se poate modifica codul, în loc de userul creat prin constructor, se poate folosi ”when(apel functie).thenReturn(lista/user așteptat)” după care se parcurg aproximativ pașii din metoda pe care o verificăm, creăm baza de date, convertim obiectul/obiectele obținute, pe urmă le verificăm.
+Pentru testare am realizat 4 unit teste pentru a verifica atât conexiunea cu baza de date, cât și corectitudinea metodelor. Există câte un test pentru fiecare tabel, findById și findBy Gender pentru user, în condițiile create, ambele returneaza doar o valoare și o recuperăm din listă cu metoda get(0). Iar pentru antrenori și dansuri, verificăm findAll, doar ca comparam primele rezultate din liste.
+
+# Interfața grafică
+Am creat câte o pagina web pentru fiecare funcționalitate, astfel prima pagina indicată pentru a vizualiza aplicația este ”/home”, această pagină reprezintă un meniu de unde se pot alege urmatoarele obțiuni: vizualizarea cursanților, a antrenorilor, a dansurilor, vizualizarea pe sexe, grupul feminin sau masculin, și cel mai vechi cursant care este primul în baza de date.
+La fiecare dintre aceste pagini sub tabela formată există un buton de ”Back” pentru a reveni la meniu. Pe lângă toate acestea, există și posibilitatea de a adăuga un user nou, Pentru asta se completează câmpurile necesare și se apasă submit.
  
 # Dependințe utilizate
  - Springboot
@@ -131,3 +135,6 @@ Pentru testare am facut 2 unit teste, unul pentru findById și unul pentru findB
 			<scope>runtime</scope>
 		</dependency>
 		
+# Concluzii
+Consider că această aplicație se poate folosi, desigur imbunătățită, pentru școlile de dans, pentru a se inregistra toți cursanții, pe categorii, pentru a fi mai ușor de contactat pentru evenimente, party-uri sau workshop-uri. Desigur, și pentru antrenori lucrurile devin mai eficiente, observând care sunt cursurile cu mai mulți cursanți, la care curs sunt mai multe fete.
+Ca și viitoare îmbunătățiri, pe lângă cele menționate mai sus, s-ar putea adăuga o listă de prețuri pentru abonamentele la cursuri, pentru fiecare cursant daca și când a plătit ultimul abonament, un calendar pentru cursurile de dans, și lista poate continua cu specificațiile școlilor de dans.

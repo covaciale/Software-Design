@@ -1,14 +1,17 @@
 package com.example.sd2020.demo;
 
 import model.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-@RestController
+@Controller
 public class SampleController {
 
     private UserDAO userDAO = new UserDAO();
@@ -18,52 +21,64 @@ public class SampleController {
     public SampleController() {
     }
 
-    @GetMapping("/hello") // localhost:8080/
-    public String getHelloWorld() {
-        return "Hello SD 2020";
+    @RequestMapping("/home") // localhost:8080/home
+    public String getHelloWorld(Model model) {
+        return "page2";
     }
 
-    @GetMapping("/allListUser") // localhost:8080/allListUser
-    public List<User> findAllUser() {
-        List<User> list = userDAO.findAll();
-        return list;
+    @RequestMapping("/allListUser") // localhost:8080/allListUser
+    public String findAllUser(Model model) {
+        model.addAttribute("users",userDAO.findAll());
+        return "page3";
     }
 
-    @GetMapping("/allListDances") // localhost:8080/allListDances
-    public List<Dances> findAllDances() {
-        List<Dances> list = dancesDAO.findAll();
-        return list;
+    @RequestMapping("/allListDances") // localhost:8080/allListDances
+    public String findAllDances(Model model) {
+        model.addAttribute("dances", dancesDAO.findAll());
+        return "page1";
     }
 
-    @GetMapping("/allListAntrenori") // localhost:8080/allListAntrenori
-    public List<User> findAllAntrenori() {
-        List<User> list = antrenoriDAO.findAll();
-        return list;
+    @RequestMapping("/allListAntrenori") // localhost:8080/allListAntrenori
+    public String findAllAntrenori(Model model) {
+        model.addAttribute("antrenori", antrenoriDAO.findAll());
+        return "page4";
     }
 
-    @GetMapping("/male") // localhost:8080/male
-    public List<User> male() {
-        List<User> list = userDAO.findByGender("M");
-        return list;
+    @RequestMapping("/male") // localhost:8080/male
+    public String male(Model model) {
+        model.addAttribute("users",userDAO.findByGender("M"));
+        System.out.println(userDAO.findByGender("M"));
+        return "page3";
     }
 
-    @GetMapping("/female") // localhost:8080/female
-    public List<User> female() {
-        List<User> list = userDAO.findByGender("F");
-        return list;
+    @RequestMapping("/female") // localhost:8080/female
+    public String female(Model model) {
+        model.addAttribute("users", userDAO.findByGender("F"));
+        return "page3";
     }
 
-    @GetMapping("/first") // localhost:8080/first
-    public User first() {
-        User list = userDAO.findById(1);
-        return list;
+    @RequestMapping("/first") // localhost:8080/first
+    public String first(Model model) {
+        model.addAttribute("users", userDAO.findById(1));
+        System.out.println(userDAO.findById(1));
+        return "page3";
     }
 
-    @PostMapping("/insertItem") // localhost:8080/insertItem
-    public void insertItem(User item) {
-        User user = (new UserFactory()).createUser(item.idUser, item.firstName, item.secondName, item.age, item.gender, item.dance);
+    @RequestMapping("/add") // localhost:8080/add
+    public String addUser(Model model)
+    {
+        return "page5";
+    }
+    static int id = 4;
+    @PostMapping("/insert") // localhost:8080/insert
+    @ResponseBody
+    public void insertItem(@RequestParam String fname, @RequestParam String lname,@RequestParam int varsta, @RequestParam String sex, @RequestParam String dans ) {
+
+        User user = (new UserFactory()).createUser(id, fname, lname, varsta, sex, dans);
         if (user != null) {
             userDAO.add(user);
+            id++;
         }
+
     }
 }

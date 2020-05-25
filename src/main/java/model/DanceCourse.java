@@ -1,6 +1,6 @@
 package model;
 
-import javafx.util.Pair;
+//import javafx.util.Pair;
 
 
 import java.util.Date;
@@ -50,9 +50,9 @@ public class DanceCourse extends Observable {
     }
 
     public void setDate(Date date) {
-        Pair<Date, Date> dates = new Pair<>(this.date, date);
+       // Pair<Date, Date> dates = new Pair<>(this.date, date);
         setChanged();
-        notifyObservers(dates);
+      //  notifyObservers(dates);
         this.date = date;
     }
 

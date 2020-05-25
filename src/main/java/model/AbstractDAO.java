@@ -71,17 +71,15 @@ public class AbstractDAO<T> {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
-        Field field = type.getDeclaredFields()[0];
+        Field field = type.getDeclaredFields()[4];
         String fieldName = field.getName();
 
-        String query = createSelectAll();
-        try{
+        String query = createSelectQuery(fieldName);
+        try {
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(query);
             statement.setString(1, gender);
             resultSet = statement.executeQuery();
-
-
 
             return createObjects(resultSet);
         } catch (SQLException e){
@@ -93,7 +91,7 @@ public class AbstractDAO<T> {
         return null;
     }
 
-    public T findById(int id){
+    public List<T> findById(int id){
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -108,7 +106,7 @@ public class AbstractDAO<T> {
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
 
-            return createObjects(resultSet).get(0);
+            return createObjects(resultSet);
         } catch (SQLException e) {
             LOGGER.log(Level.WARNING, type.getName() + "DAO:findById " + e.getMessage());
         } finally {

@@ -5,8 +5,8 @@ import com.example.sd2020.demo.arch.SampleOperations;
 import connection.ConnectionFactory;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.User;
-import model.AbstractDAO;
+
+import model.*;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -40,88 +40,42 @@ public class DemoApplicationTests {
 	public MockitoRule mockitoRule = MockitoJUnit.rule();
 	private FacadeSample facadeSample;
 	private Object User;
+	private UserDAO userDAO = new UserDAO();
+	private DancesDAO dancesDAO = new DancesDAO();
+	private AntrenoriDAO antrenoriDAO = new AntrenoriDAO();
 
 
 	@Test
 	public void testFindById() {
-		User currentUser = new User(1,"Alexandra", "Covaci", 21, "F", "dance_1");
-		User instance = new User();
-		int id = 1;
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
+		User currentUser = new User(1,"Alexandra", "Covaci", 21, "F", "Bachata");
 
-		String query = "SELECT * FROM ps1.user where idUser = 1;";
-		try {
-			connection = ConnectionFactory.getConnection();
-			statement = connection.prepareStatement(query);
-			resultSet = statement.executeQuery();
-
-
-			while (resultSet.next()) {
-
-				for (Field field : User.class.getDeclaredFields()) {
-					Object value = resultSet.getObject(field.getName());
-					PropertyDescriptor propertyDescriptor = new PropertyDescriptor(field.getName(),User.class);
-					Method method = propertyDescriptor.getWriteMethod();
-					method.invoke(instance, value);
-				}
-			}
-		} catch (SQLException | IntrospectionException e) {
-			LOGGER.log(Level.WARNING, User.class.getName() + "DAO:findById " + e.getMessage());
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionFactory.close(resultSet);
-			ConnectionFactory.close(statement);
-			ConnectionFactory.close(connection);
-		}
-
-		assertEquals(currentUser.toString(), instance.toString());
+		User user = userDAO.findById(1).get(0);
+		assertEquals(currentUser.toString(), user.toString());
 	}
 
 
 	@Test
 	public void testFindByGender() {
 
-		User currentUser = new User(3,"Liviu", "Mich", 30, "M", "dance_2");
-		User instance = new User();
-		int id = 1;
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
+		User currentUser = new User(3,"Liviu", "Mich", 30, "M", "Kizomba");
+		User user = userDAO.findByGender("M").get(0);
+		assertEquals(currentUser.toString(), user.toString());
+	}
 
-		String query = "SELECT * FROM ps1.user where gender = \"M\";";
-		try {
-			connection = ConnectionFactory.getConnection();
-			statement = connection.prepareStatement(query);
-			resultSet = statement.executeQuery();
+	@Test
+	public void testFindDance() {
 
+		Dances currentDance = new Dances(1,"Salsa");
+		Dances dance = dancesDAO.findAll().get(0);
+		assertEquals(currentDance.toString(), dance.toString());
+	}
 
-			while (resultSet.next()) {
+	@Test
+	public void testFindAntrenor() {
 
-				for (Field field : User.class.getDeclaredFields()) {
-					Object value = resultSet.getObject(field.getName());
-					PropertyDescriptor propertyDescriptor = new PropertyDescriptor(field.getName(),User.class);
-					Method method = propertyDescriptor.getWriteMethod();
-					method.invoke(instance, value);
-				}
-			}
-		} catch (SQLException | IntrospectionException e) {
-			LOGGER.log(Level.WARNING, User.class.getName() + "DAO:findById " + e.getMessage());
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionFactory.close(resultSet);
-			ConnectionFactory.close(statement);
-			ConnectionFactory.close(connection);
-		}
-
-		assertEquals(currentUser.toString(), instance.toString());
+		Antrenori current = new Antrenori(1,"Carolina", "Capitan", "Salsa");
+		Antrenori antrenor = antrenoriDAO.findAll().get(0);
+		assertEquals(current.toString(), antrenor.toString());
 	}
 
 }
